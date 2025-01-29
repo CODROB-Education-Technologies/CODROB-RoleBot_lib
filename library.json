@@ -1,6 +1,6 @@
 {
   "name": "CODROB_ROLEBOT",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Library for ROLEBOT, an ESP8266-based programmable device. Visit www.codrob.com.tr for more information.",
   "keywords": [
     "robotics",
@@ -30,6 +30,7 @@
       "examples/*",
       "test/*",
       "README.md",
+      "keywords.txt",
       "LICENSE",
       "CHANGELOG.md"
     ]

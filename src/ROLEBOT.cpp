@@ -14,19 +14,17 @@ void ROLEBOT::begin()
 
 void ROLEBOT::playIntro()
 {
-  rolebot.serialStart(115200);
-  rolebot.serialWrite("Hi from ROLEBOT!");
-  rolebot.ledWrite(HIGH);
+  digitalWrite(BLUE_LED, HIGH);
   delay(100);
-  rolebot.ledWrite(LOW);
+  digitalWrite(BLUE_LED, LOW);
   delay(100);
-  rolebot.ledWrite(HIGH);
+  digitalWrite(BLUE_LED, HIGH);
   delay(100);
-  rolebot.ledWrite(LOW);
+  digitalWrite(BLUE_LED, LOW);
   delay(100);
-  rolebot.ledWrite(HIGH);
+  digitalWrite(BLUE_LED, HIGH);
   delay(100);
-  rolebot.ledWrite(LOW);
+  digitalWrite(BLUE_LED, LOW);
   delay(100);
 }
 
