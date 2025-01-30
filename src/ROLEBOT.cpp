@@ -30,26 +30,43 @@ void ROLEBOT::playIntro()
 
 /*********************************** Serial Port ***********************************
  */
-void ROLEBOT::serialStart(int baundrate)
+
+void ROLEBOT::serialStart(int baudrate)
 {
-  Serial.begin(baundrate);
+  Serial.begin(baudrate);
 }
 
+// Overloaded function for const char* / `const char*` için fonksiyon
 void ROLEBOT::serialWrite(const char *message)
 {
   Serial.println(message);
 }
 
+// Overloaded function for String / `String` için özel fonksiyon
+void ROLEBOT::serialWrite(String message)
+{
+  Serial.println(message.c_str()); // Convert String to const char*
+}
+
+// Overloaded function for long / `long` için özel fonksiyon
+void ROLEBOT::serialWrite(long value)
+{
+  Serial.println(String(value).c_str());
+}
+
+// Overloaded function for int / `int` için fonksiyon
 void ROLEBOT::serialWrite(int value)
 {
   Serial.println(String(value).c_str());
 }
 
+// Overloaded function for float / `float` için fonksiyon
 void ROLEBOT::serialWrite(float value)
 {
   Serial.println(String(value).c_str());
 }
 
+// Overloaded function for bool / `bool` için fonksiyon
 void ROLEBOT::serialWrite(bool value)
 {
   Serial.println(value ? "true" : "false");

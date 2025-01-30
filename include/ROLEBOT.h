@@ -22,6 +22,8 @@ public:
    */
   void serialStart(int baundrate);
   void serialWrite(const char *message);
+  void serialWrite(String message);
+  void serialWrite(long value);
   void serialWrite(int value);
   void serialWrite(float value);
   void serialWrite(bool value);

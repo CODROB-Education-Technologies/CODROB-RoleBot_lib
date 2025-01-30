@@ -1,32 +1,33 @@
 #include <ROLEBOT.h> // ROLEBOT kütüphanesi / ROLEBOT library
 
-// Create a ROLEBOT object / ROLEBOT nesnesi oluşturuluyor
+// 📌 ROLEBOT nesnesi oluşturuluyor / Create a ROLEBOT object
 ROLEBOT rolebot;
 
 void setup()
 {
-  rolebot.begin();             // Initialize ROLEBOT / ROLEBOT başlatılıyor
-  rolebot.playIntro();         // Play startup melody / Giriş müziği çalınıyor
-  rolebot.serialStart(115200); // Start serial communication / Seri haberleşmeyi başlat
+  rolebot.begin();             // ROLEBOT başlatılıyor / Initialize ROLEBOT
+  rolebot.playIntro();         // Giriş müziği çalınıyor / Play startup melody
+  rolebot.serialStart(115200); // Seri haberleşmeyi başlat / Start serial communication
 
-  rolebot.serialWrite("Welcome to ROLEBOT Test Firmware!"); // Display welcome message / Hoşgeldiniz mesajını göster
+  // 📌 Hoşgeldiniz mesajını seri porta yazdır / Display welcome message
+  rolebot.serialWrite("🚀 ROLEBOT Buton Testi Başladı! / ROLEBOT Button Test Started!");
 }
 
 void loop()
 {
-  // Read button state / Buton durumunu oku
-  if (rolebot.button1Read() == false)
-  {
-    rolebot.serialWrite("Button Pressed!"); // Print button pressed message / Butona basıldığını yazdır
+  // 📌 **Buton durumlarını oku / Read button states**
+  bool buttonState = rolebot.button1Read(); // Buton 1'in durumunu oku / Read Button 1 state
 
-    rolebot.ledWrite(HIGH); // Turn on LED / LED'i aç
-    delay(200);
+  if (!buttonState) // Eğer butona basıldıysa / If the button is pressed
+  {
+    rolebot.serialWrite("🔴 Butona Basıldı! / Button Pressed!");
+    rolebot.ledWrite(HIGH); // LED'i aç / Turn on LED
+    delay(200);             // Kısa bekleme / Short delay
   }
-  else
+  else // Butona basılmadıysa / If button is not pressed
   {
-    rolebot.serialWrite("Button Free"); // Print button released message / Butonun serbest olduğunu yazdır
-
-    rolebot.ledWrite(LOW); // Turn off LED / LED'i kapat
-    delay(200);
+    rolebot.serialWrite("🟢 Buton Serbest / Button Free");
+    rolebot.ledWrite(LOW); // LED'i kapat / Turn off LED
+    delay(200);            // Kısa bekleme / Short delay
   }
 }

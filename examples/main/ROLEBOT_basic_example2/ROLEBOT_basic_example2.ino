@@ -1,36 +1,39 @@
 #include <ROLEBOT.h> // ROLEBOT kütüphanesi / ROLEBOT library
 
-// Create a ROLEBOT object / ROLEBOT nesnesi oluşturuluyor
+// 📌 ROLEBOT nesnesi oluşturuluyor / Create a ROLEBOT object
 ROLEBOT rolebot;
 
 void setup()
 {
-  rolebot.begin();             // Initialize ROLEBOT / ROLEBOT başlatılıyor
-  rolebot.playIntro();         // Play startup melody / Giriş müziği çalınıyor
-  rolebot.serialStart(115200); // Start serial communication / Seri haberleşmeyi başlat
+  rolebot.begin();             // ROLEBOT başlatılıyor / Initialize ROLEBOT
+  rolebot.playIntro();         // Giriş müziği çalınıyor / Play startup melody
+  rolebot.serialStart(115200); // Seri haberleşmeyi başlat / Start serial communication
 
-  rolebot.serialWrite("Welcome to ROLEBOT Test Firmware!"); // Display welcome message / Hoşgeldiniz mesajını göster
+  // 📌 Hoşgeldiniz mesajını seri porta yazdır / Display welcome message
+  rolebot.serialWrite("🚀 ROLEBOT Röle Testi Başladı! / ROLEBOT Relay Test Started!");
 }
 
 void loop()
 {
-  // Read button state / Buton durumunu oku
-  if (rolebot.button1Read() == false)
+  // 📌 **Buton durumunu oku / Read button state**
+  bool buttonState = rolebot.button1Read(); // Buton 1'in durumunu oku / Read Button 1 state
+
+  if (!buttonState) // Eğer butona basıldıysa / If the button is pressed
   {
-    rolebot.serialWrite("Button Pressed!"); // Print button pressed message / Butona basıldığını yazdır
+    rolebot.serialWrite("🔴 Butona Basıldı! Röle 1 Açık, Röle 2 Kapalı / Button Pressed! Relay 1 ON, Relay 2 OFF");
 
-    rolebot.Relay1Write(HIGH); // Turn on relay / Röle'i aç
-    rolebot.Relay2Write(LOW);  // Turn off relay / Röle'i kapat
+    rolebot.Relay1Write(HIGH); // Röle 1'i aç / Turn on Relay 1
+    rolebot.Relay2Write(LOW);  // Röle 2'yi kapat / Turn off Relay 2
 
-    delay(200);
+    delay(200); // Kısa bekleme / Short delay
   }
-  else
+  else // Eğer butona basılmadıysa / If button is not pressed
   {
-    rolebot.r("Button Free"); // Print button released message / Butonun serbest olduğunu yazdır
+    rolebot.serialWrite("🟢 Buton Serbest! Röle 1 Kapalı, Röle 2 Açık / Button Free! Relay 1 OFF, Relay 2 ON");
 
-    rolebot.Relay1Write(LOW);  // Turn off relay / Röle'i kapat
-    rolebot.Relay2Write(HIGH); // Turn on relay / Röle'i aç
+    rolebot.Relay1Write(LOW);  // Röle 1'i kapat / Turn off Relay 1
+    rolebot.Relay2Write(HIGH); // Röle 2'yi aç / Turn on Relay 2
 
-    delay(200);
+    delay(200); // Kısa bekleme / Short delay
   }
 }
