@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.3.0] - 2025-02-04
+### Added
+- Firebase kütüphaneleri eklendi. 
+- Wifi Kütüphaneleri ve fonskiyonları ekleni 
+- Local server fonksiyonaları eklendi. 
+- EEPROM fonksiyonları ekledi.
+- Örnek kütüphaneler eklendi. 
+
+### Fixed
+- Seriport fonksiyornları düzeltildi. 
+
 ## [1.2.0] - 2024-12-30
 ### Added
 - ROLEBOT sınıfı ve temel sensör işlevleri eklendi.

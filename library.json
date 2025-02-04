@@ -1,6 +1,6 @@
 {
   "name": "CODROB_ROLEBOT",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Library for ROLEBOT, an ESP8266-based programmable device. Visit www.codrob.com.tr for more information.",
   "keywords": [
     "robotics",
@@ -47,5 +47,9 @@
     "examples/main/ROLEBOT_basic_example"
   ],
   "homepage": "https://github.com/CODROB-Education-Technologies/CODROB-ROLEBOT_lib",
-  "dependencies": {}
+  "dependencies": {
+    "esphome/ESPAsyncWebServer-esphome": ">=3.3.0",
+    "mobizt/Firebase Arduino Client Library for ESP8266 and ESP32": ">=4.4.14",
+    "bblanchon/ArduinoJson": ">=7.1.0"
+  }
 }
