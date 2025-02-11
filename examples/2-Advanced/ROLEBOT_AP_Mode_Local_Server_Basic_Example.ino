@@ -9,7 +9,7 @@ ROLEBOT rolebot; // 📌 rolebot Nesnesi / rolebot Object
 const char WEBPageScript[] PROGMEM = R"rawliteral(
 <script>
   function sayHello() {
-    alert("Hello from rolebot!");
+    alert("Merhaba ROLEBOT!");
   }
 </script>
 )rawliteral";
@@ -27,22 +27,23 @@ const char WEBPageCSS[] PROGMEM = R"rawliteral(
 // ESP32 tarafından sunulacak HTML kodu
 const char WEBPageHTML[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <title>rolebot Web Server</title>
+  <meta charset="UTF-8">
+  <title>ROLEBOT Web Server</title>
   %s <!-- CSS Dosyası Buraya Eklenir -->
   %s <!-- JavaScript Dosyası Buraya Eklenir -->
 </head>
 <body>
-  <h1>rolebot Web Sayfası</h1>
+  <h1>ROLEBOT Web Sayfası</h1>
   <button onclick="sayHello()">Tıklayın</button>
 </body>
 </html>
 )rawliteral";
 
 // 📌 **Erişim Noktası (AP) Modu İçin Wi-Fi Bilgileri**
-const char *ap_ssid = "CODROB Server"; // 📌 AP Modu için SSID / AP Mode SSID
-const char *ap_password = "12345678";  // 📌 AP Modu için Şifre / AP Mode Password (En az 8 karakter)
+const char AP_SSID = "CODROB Server"; // 📌 AP Modu için SSID / AP Mode SSID
+const char AP_PASS = "12345678";      // 📌 AP Modu için Şifre / AP Mode Password (En az 8 karakter)
 
 // 📌 **Kurulum Fonksiyonu (Setup)**
 void setup()
@@ -50,10 +51,10 @@ void setup()
   rolebot.serialStart(115200); // 📌 **Seri Haberleşmeyi Başlat / Start Serial Communication**
 
   // 📌 **ESP32'yi Erişim Noktası (AP) Olarak Başlat**
-  rolebot.serverStart("AP", ap_ssid, ap_password);
+  rolebot.serverStart("AP", AP_SSID, AP_PASS);
 
   // 📌 **ESP32 Üzerinde Web Sayfasını Yayınla**
-  rolebot.serverCreateLocalPage("dashboard", WEBPageScript, WEBPageCSS, WEBPageHTML);
+  rolebot.serverCreateLocalPage("demo", WEBPageScript, WEBPageCSS, WEBPageHTML); // Cihaza Bağlanın ve linke gidin: 192.168.4.1/demo / Connect to device and goto link: 192.168.4.1/demo
 }
 
 // 📌 **Ana Döngü (Loop)**

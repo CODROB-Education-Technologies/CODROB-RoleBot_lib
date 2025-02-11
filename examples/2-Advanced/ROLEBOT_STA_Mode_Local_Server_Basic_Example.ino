@@ -9,7 +9,7 @@ ROLEBOT rolebot; // 📌 ROLEBOT Nesnesi / ROLEBOT Object
 const char WEBPageScript[] PROGMEM = R"rawliteral(
 <script>
   function sayHello() {
-    alert("Hello from rolebot!");
+    alert("Merhaba ROLEBOT!");
   }
 </script>
 )rawliteral";
@@ -27,25 +27,26 @@ const char WEBPageCSS[] PROGMEM = R"rawliteral(
 // ESP32 tarafından sunulacak HTML kodu
 const char WEBPageHTML[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <title>rolebot Web Server</title>
+  <meta charset="UTF-8">
+  <title>ROLEBOT Web Server</title>
   %s <!-- CSS Dosyası Buraya Eklenir -->
   %s <!-- JavaScript Dosyası Buraya Eklenir -->
 </head>
 <body>
-  <h1>rolebot Web Sayfası</h1>
+  <h1>ROLEBOT Web Sayfası</h1>
   <button onclick="sayHello()">Tıklayın</button>
 </body>
 </html>
 )rawliteral";
 
 // 📌 **Kullanıcı için Kolaylaştırılmış Wi-Fi Tanımlamaları**
-const char *wifi_ssid = "INTERNET";          // 📌 Wi-Fi Ağ Adı (SSID) / WiFi Network Name (SSID)
-const char *wifi_password = "INTERNET_2022"; // 📌 Wi-Fi Şifresi / WiFi Password
+const char WIFI_SSID = "INTERNET";      // 📌 Wi-Fi Ağ Adı (SSID) / WiFi Network Name (SSID)
+const char WIFI_PASS = "INTERNET_2022"; // 📌 Wi-Fi Şifresi / WiFi Password
 
-const char *ap_ssid = "CODROB Server"; // 📌 AP Modu için SSID / AP Mode SSID
-const char *ap_password = "12345678";  // 📌 AP Modu için Şifre / AP Mode Password (En az 8 karakter)
+const char AP_SSID = "CODROB Server"; // 📌 AP Modu için SSID / AP Mode SSID
+const char AP_PASS = "12345678";      // 📌 AP Modu için Şifre / AP Mode Password (En az 8 karakter)
 
 // 📌 **Kurulum Fonksiyonu (Setup)**
 void setup()
@@ -53,16 +54,16 @@ void setup()
   rolebot.serialStart(115200); // 📌 **Seri Haberleşmeyi Başlat / Start Serial Communication**
 
   // 📌 **STA veya AP Modunda Bağlantı Kur**
-  rolebot.serverStart("STA", wifi_ssid, wifi_password);
+  rolebot.serverStart("STA", WIFI_SSID, WIFI_PASS);
 
   // 📌 **Eğer STA bağlantısı başarısız olursa AP moduna geç**
   if (!rolebot.wifiConnectionControl())
   {
-    rolebot.serverStart("AP", ap_ssid, ap_password);
+    rolebot.serverStart("AP", AP_SSID, AP_PASS);
   }
 
   // 📌 **ESP32 Üzerinde Web Sayfasını Yayınla**
-  rolebot.serverCreateLocalPage("dashboard", WEBPageScript, WEBPageCSS, WEBPageHTML);
+  rolebot.serverCreateLocalPage("demo", WEBPageScript, WEBPageCSS, WEBPageHTML); // Cihaza Bağlanın ve linke gidin: 192.168.4.1/demo / Connect to device and goto link: 192.168.4.1/demo
 }
 
 // 📌 **Ana Döngü (Loop)**

@@ -3,12 +3,12 @@
 ROLEBOT rolebot;
 
 // 🔑 Firebase Configuration | 🔑 Firebase Yapılandırması
-#define FIREBASE_PROJECT_URL "FIREBASE_PROJECT_URL" // Enter the Firebase server URL here. | Buraya Firebase sunucusunun linkini yazınız.
-#define FIREBASE_API_KEY "FIREBASE_API_KEY"         // Enter the Firebase server API key here. | Buraya Firebase sunucusunun API anahtarını yazınız.
+#define FIREBASE_PROJECT_URL "https://deneme-961c3-default-rtdb.firebaseio.com/" // Enter the Firebase server URL here. | Buraya Firebase sunucusunun linkini yazınız.
+#define FIREBASE_API_KEY "AIzaSyA5wTuxzls6IxQct-G2_hf0i5LWF3ulsec"               // Enter the Firebase server API key here. | Buraya Firebase sunucusunun API anahtarını yazınız.
 
 // 📧 Firebase User Authentication | 📧 Firebase Kullanıcı Kimlik Doğrulama
-#define USER_EMAIL "xxxxx@xxxxx.com" // Enter the email address used to create the Firebase user here. | Buraya Firebase sunucusunda oluşturduğunuz kullanıcı e-posta adresini yazınız.
-#define USER_PASSWORD "PASSS"        // Enter the password for the Firebase user here. | Buraya Firebase sunucusunda oluşturduğunuz kullanıcı şifresini yazınız.
+#define USER_EMAIL "deneme123@gmail.com" // Enter the email address used to create the Firebase user here. | Buraya Firebase sunucusunda oluşturduğunuz kullanıcı e-posta adresini yazınız.
+#define USER_PASSWORD "dene123"          // Enter the password for the Firebase user here. | Buraya Firebase sunucusunda oluşturduğunuz kullanıcı şifresini yazınız.
 
 // 📡 WiFi Settings | 📡 WiFi Ayarları
 #define WIFI_SSID "WIFI_SSID" // Enter the name of the Wi-Fi network you want to connect to here. | Buraya bağlanmak istediğiniz Wi-Fi ağının adını yazınız.
