@@ -20,7 +20,7 @@ void setup()
     Serial.println("🚀 Rolebot Firebase Example Starting...");
 
     // 🔗 Step 1: Connect to Wi-Fi
-    rolebot.wifiStartAndConnect(WIFI_SSID, WiFi_PASS);
+    rolebot.wifiStartAndConnect(WIFI_SSID, WIFI_PASS);
 
     // 🔥 Step 2: Initialize Firebase
     rolebot.fbServerSetandStartWithUser(FIREBASE_PROJECT_URL, FIREBASE_API_KEY, USER_EMAIL, USER_PASSWORD);
