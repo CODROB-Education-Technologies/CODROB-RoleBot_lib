@@ -2,8 +2,15 @@
 
 ROLEBOT rolebot; // 📌 ROLEBOT Nesnesi / ROLEBOT Object
 
-// 📌 **Web Sayfası İçeriği (HTML, CSS, JavaScript)**
+// 📡 WiFi Settings | 📡 WiFi Ayarları
+#define WIFI_SSID "WIFI_SSID" // Enter the name of the Wi-Fi network you want to connect to here. | Buraya bağlanmak istediğiniz Wi-Fi ağının adını yazınız.
+#define WIFI_PASS "WiFi_PASS" // Enter the password of the Wi-Fi network you want to connect to here. | Buraya bağlanmak istediğiniz Wi-Fi ağının şifresini yazınız.
 
+// 📌 **Erişim Noktası (AP) Modu İçin Wi-Fi Bilgileri**
+#define AP_SSID "CODROB Server" // 📌 AP Modu için SSID / AP Mode SSID
+#define AP_PASS "12345678"      // 📌 AP Modu için Şifre / AP Mode Password (En az 8 karakter)
+
+// 📌 **Web Sayfası İçeriği (HTML, CSS, JavaScript)**
 // ✅ **JavaScript (Web Sayfası İçin)**
 // Kullanıcı butona tıkladığında bir mesaj gösterecek.
 const char WEBPageScript[] PROGMEM = R"rawliteral(
@@ -41,17 +48,11 @@ const char WEBPageHTML[] PROGMEM = R"rawliteral(
 </html>
 )rawliteral";
 
-// 📌 **Kullanıcı için Kolaylaştırılmış Wi-Fi Tanımlamaları**
-const char WIFI_SSID = "INTERNET";      // 📌 Wi-Fi Ağ Adı (SSID) / WiFi Network Name (SSID)
-const char WIFI_PASS = "INTERNET_2022"; // 📌 Wi-Fi Şifresi / WiFi Password
-
-const char AP_SSID = "CODROB Server"; // 📌 AP Modu için SSID / AP Mode SSID
-const char AP_PASS = "12345678";      // 📌 AP Modu için Şifre / AP Mode Password (En az 8 karakter)
-
 // 📌 **Kurulum Fonksiyonu (Setup)**
 void setup()
 {
-  rolebot.serialStart(115200); // 📌 **Seri Haberleşmeyi Başlat / Start Serial Communication**
+  // 📌 **Seri Haberleşmeyi Başlat / Start Serial Communication**
+  rolebot.serialStart(115200);
 
   // 📌 **STA veya AP Modunda Bağlantı Kur**
   rolebot.serverStart("STA", WIFI_SSID, WIFI_PASS);
@@ -63,7 +64,7 @@ void setup()
   }
 
   // 📌 **ESP32 Üzerinde Web Sayfasını Yayınla**
-  rolebot.serverCreateLocalPage("demo", WEBPageScript, WEBPageCSS, WEBPageHTML); // Cihaza Bağlanın ve linke gidin: 192.168.4.1/demo / Connect to device and goto link: 192.168.4.1/demo
+  rolebot.serverCreateLocalPage("demopage", WEBPageScript, WEBPageCSS, WEBPageHTML); // Cihaza Bağlanın ve linke gidin: 192.168.4.1/demo / Connect to device and goto link: 192.168.4.1/demo
 }
 
 // 📌 **Ana Döngü (Loop)**

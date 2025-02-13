@@ -61,7 +61,7 @@ public:
   /*********************************** Server  ***********************************
    */
   void serverStart(const char *mode, const char *ssid, const char *password);
-  void serverCreateLocalPage(const char *url, const char *WEBPageScript, const char *WEBPageCSS, const char *WEBPageHTML);
+  void serverCreateLocalPage(const char *url, const char *WEBPageScript, const char *WEBPageCSS, const char *WEBPageHTML, size_t bufferSize = 1024);
   void serverHandleDNS();
   void serverContinue();
 

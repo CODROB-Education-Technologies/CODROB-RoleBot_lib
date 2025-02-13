@@ -22,6 +22,19 @@ void setup()
     // 🔗 Step 1: Connect to Wi-Fi
     rolebot.wifiStartAndConnect(WIFI_SSID, WIFI_PASS);
 
+    if (!rolebot.wifiConnectionControl())
+    {
+        rolebot.serialWrite("Device Stopped!");
+        while (true) // Endless loop | Sonsuz döngü
+        {
+            if (rolebot.wifiConnectionControl())
+            {
+                rolebot.serialWrite("Connection Success! Reworking..");
+                break; // Exit the loop, continue.| Döngüden çık, devam et.
+            }
+        }
+    }
+
     // 🔥 Step 2: Initialize Firebase
     rolebot.fbServerSetandStartWithUser(FIREBASE_PROJECT_URL, FIREBASE_API_KEY, USER_EMAIL, USER_PASSWORD);
 

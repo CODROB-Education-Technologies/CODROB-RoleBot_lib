@@ -128,7 +128,7 @@ void ROLEBOT::wifiStartAndConnect(const char *ssid, const char *pass)
   {
     if (WiFi.status() == WL_CONNECTED)
     {
-      Serial.printf("[WiFi]: Connected!\r\n[WiFi]: Local IP: %s\r\n", WiFi.localIP().toString().c_str());
+      Serial.printf("\n[WiFi]: Connected!\r\n[WiFi]: Local IP: %s\r\n", WiFi.localIP().toString().c_str());
       Serial.printf("[WiFi]: MAC Address: %s\r\n", WiFi.macAddress().c_str());
       return;
     }
@@ -171,7 +171,7 @@ void ROLEBOT::serverStart(const char *mode, const char *ssid, const char *passwo
     WiFi.mode(WIFI_STA);
     WiFi.begin(ssid, password);
 
-    Serial.printf("[STA Mode]: Connecting to WiFi: %s\n", ssid);
+    Serial.printf("\n[STA Mode]: Connecting to WiFi: %s\n", ssid);
 
     int retries = 30;
     while (WiFi.status() != WL_CONNECTED && retries > 0)
@@ -199,7 +199,7 @@ void ROLEBOT::serverStart(const char *mode, const char *ssid, const char *passwo
     WiFi.softAPConfig(IPAddress(192, 168, 4, 1), IPAddress(192, 168, 4, 1), IPAddress(255, 255, 255, 0));
     dnsServer.start(53, "*", IPAddress(192, 168, 4, 1));
 
-    Serial.printf("[AP Mode]: Access Point Started!\n");
+    Serial.printf("\n[AP Mode]: Access Point Started!\n");
     Serial.printf("[AP Mode]: SSID: \"%s\"\n", ssid);
     Serial.printf("[AP Mode]: Password: \"%s\"\n", password);
     Serial.printf("[AP Mode]: AP IP Address: http://%s\n", WiFi.softAPIP().toString().c_str());
@@ -209,7 +209,7 @@ void ROLEBOT::serverStart(const char *mode, const char *ssid, const char *passwo
   serverCODROB.on("/", HTTP_GET, [](AsyncWebServerRequest *request)
                   {
       Serial.println("[Local Server]: Root URL Accessed!");
-      request->send(200, "text/plain", "ESP32 Server is Running!"); });
+      request->send(200, "text/plain", "CODROB Server is Running!"); });
 
   // 📌 404 Hatası
   serverCODROB.onNotFound([](AsyncWebServerRequest *request)
@@ -234,17 +234,23 @@ void ROLEBOT::serverStart(const char *mode, const char *ssid, const char *passwo
   Serial.println("[Local Server]: Server Started! ✅");
 }
 
-void ROLEBOT::serverCreateLocalPage(const char *url, const char *WEBPageScript, const char *WEBPageCSS, const char *WEBPageHTML)
+void ROLEBOT::serverCreateLocalPage(const char *url, const char *WEBPageScript, const char *WEBPageCSS, const char *WEBPageHTML, size_t bufferSize)
 {
   // 📌 Sayfa içeriğini oluştur
-  serverCODROB.on(("/" + String(url)).c_str(), HTTP_GET, [WEBPageScript, WEBPageCSS, WEBPageHTML](AsyncWebServerRequest *request)
+  serverCODROB.on(("/" + String(url)).c_str(), HTTP_GET, [WEBPageScript, WEBPageCSS, WEBPageHTML, bufferSize](AsyncWebServerRequest *request)
                   {
-        char buffer[4096]; // **Buffer Boyutu**: 4096 bayt (Daha büyük içerikleri destekler)
-        int len = snprintf(buffer, sizeof(buffer), WEBPageHTML, WEBPageScript, WEBPageCSS);
-        if (len >= sizeof(buffer)) {
-            Serial.println("[ERROR]: Buffer size insufficient, content truncated!");
-        }
-        request->send(200, "text/html", buffer); });
+                    // Buffer boyutu kullanıcının belirttiği veya varsayılan değerle tanımlanır
+                    char *buffer = new char[bufferSize];
+                    int len = snprintf(buffer, bufferSize, WEBPageHTML, WEBPageScript, WEBPageCSS);
+
+                    if (len >= bufferSize)
+                    {
+                      Serial.println("[ERROR]: Buffer size insufficient, content truncated!");
+                    }
+
+                    request->send(200, "text/html", buffer);
+                    delete[] buffer; // Dinamik olarak ayrılan belleği serbest bırakın
+                  });
 
   if (WiFi.status() == WL_CONNECTED)
   {
