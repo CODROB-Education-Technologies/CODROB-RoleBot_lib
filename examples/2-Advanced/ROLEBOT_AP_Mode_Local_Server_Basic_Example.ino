@@ -27,7 +27,7 @@ const char WEBPageCSS[] PROGMEM = R"rawliteral(
 )rawliteral";
 
 // ✅ **HTML (Web Sayfası İçeriği)**
-// ESP32 tarafından sunulacak HTML kodu
+// ROLEBOT tarafından sunulacak HTML kodu
 const char WEBPageHTML[] PROGMEM = R"rawliteral(
 <!DOCTYPE html>
 <html lang="tr">
@@ -50,10 +50,10 @@ void setup()
   // 📌 **Seri Haberleşmeyi Başlat / Start Serial Communication**
   rolebot.serialStart(115200);
 
-  // 📌 **ESP32'yi Erişim Noktası (AP) Olarak Başlat**
+  // 📌 **ROLEBOT'yi Erişim Noktası (AP) Olarak Başlat**
   rolebot.serverStart("AP", AP_SSID, AP_PASS);
 
-  // 📌 **ESP32 Üzerinde Web Sayfasını Yayınla**
+  // 📌 **ROLEBOT Üzerinde Web Sayfasını Yayınla**
   rolebot.serverCreateLocalPage("demopage", WEBPageScript, WEBPageCSS, WEBPageHTML); // Cihaza Bağlanın ve linke gidin: 192.168.4.1/demo / Connect to device and goto link: 192.168.4.1/demo
 }
 
