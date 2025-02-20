@@ -226,8 +226,8 @@ void ROLEBOT::serverStart(const char *mode, const char *ssid, const char *passwo
       request->send(404, "text/plain", "Not Found"); });
 
   // 📌 **WebSocket Olaylarını Bağla**
-  serverCODROBWebSocket.onEvent([](AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len)
-                                {
+  serverCODROBWebSocket->onEvent([](AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len)
+                                 {
       if (type == WS_EVT_CONNECT) {
           Serial.println("WebSocket Client Connected");
       } else if (type == WS_EVT_DISCONNECT) {
@@ -235,7 +235,7 @@ void ROLEBOT::serverStart(const char *mode, const char *ssid, const char *passwo
       } });
 
   // 📌 WebSocket'i Sunucuya Bağla
-  serverCODROB.addHandler(&serverCODROBWebSocket);
+  serverCODROB.addHandler(serverCODROBWebSocket);
 
   // 📌 **En son sunucuyu başlat!**
   serverCODROB.begin();
@@ -428,6 +428,7 @@ void ROLEBOT::fbServerSetJSON(const char *dataPath, String data)
     Serial.println("Reason: " + firebaseData.errorReason());
   }
 }
+#endif
 
 /*********************************** Firebase Read Functions ***********************************/
 

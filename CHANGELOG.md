@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.5.2] - 2025-02-19
+## [1.5.3] - 2025-02-19
 ### Added
 - Arduino uyumluluğu için library.properties eklendi.
 - esphome/ESPAsyncWebServer-esphome yerine mathieucarbou/ESPAsyncWebServer eklendi. 

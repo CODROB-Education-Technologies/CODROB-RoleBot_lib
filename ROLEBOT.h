@@ -2,7 +2,6 @@
 #define ROLEBOT_H
 
 #if defined(ESP8266)
-
 #include <Arduino.h>
 #include <EEPROM.h>
 
@@ -25,7 +24,8 @@
 #if defined(USE_WIFI)
 #include <ESP8266WiFi.h>
 #endif
-// PinS
+
+// Pins
 #define RELAY_1 12
 #define RELAY_2 13
 
@@ -119,7 +119,8 @@ private:
   FirebaseAuth firebaseAuth;     // Authentication credentials for user verification
   FirebaseConfig firebaseConfig; // Configuration settings for Firebase
   char uid[128] = "";            // User ID storage
-#endif };
+#endif
+};
 
 #else
 #error "ROLEBOT sadece ESP8266 için desteklenmektedir."
