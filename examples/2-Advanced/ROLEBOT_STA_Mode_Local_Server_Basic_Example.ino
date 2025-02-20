@@ -1,5 +1,3 @@
-#define USE_SERVER
-
 #include <ROLEBOT.h> // 📌 ROLEBOT Kütüphanesi / ROLEBOT Library
 
 ROLEBOT rolebot; // 📌 ROLEBOT Nesnesi / ROLEBOT Object

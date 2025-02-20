@@ -1,5 +1,3 @@
-#define USE_FIREBASE
-
 #include <ROLEBOT.h>
 
 ROLEBOT rolebot;

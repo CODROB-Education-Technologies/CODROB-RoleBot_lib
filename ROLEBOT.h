@@ -4,6 +4,7 @@
 #if defined(ESP8266)
 #include <Arduino.h>
 #include <EEPROM.h>
+#include <ROLEBOT_Config.h>
 
 #if defined(USE_SERVER)
 #ifndef USE_WIFI
