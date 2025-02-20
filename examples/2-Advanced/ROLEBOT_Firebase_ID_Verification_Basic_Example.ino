@@ -1,3 +1,11 @@
+/*
+ * 📌 Firebase özelliklerini kullanabilmek için, ROLEBOT_Config.h dosyasında 'USE_FIREBASE' tanımının başındaki
+ * yorum satırlarını (//) kaldırın. Aksi takdirde, Firebase işlevleri devre dışı kalacaktır.
+ *
+ * 📌 To enable Firebase features, remove the comment (//) before the 'USE_FIREBASE' definition in
+ * ROLEBOT_Config.h. Otherwise, Firebase functions will be disabled.
+ */
+
 #include <ROLEBOT.h>
 
 ROLEBOT rolebot;

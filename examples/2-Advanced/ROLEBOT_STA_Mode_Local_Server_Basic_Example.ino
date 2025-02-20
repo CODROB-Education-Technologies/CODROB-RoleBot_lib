@@ -1,3 +1,11 @@
+/*
+ * 📌 Server özelliklerini kullanabilmek için, ROLEBOT_Config.h dosyasında 'USE_SERVER' tanımının başındaki
+ * yorum satırlarını (//) kaldırın. Aksi takdirde, web sunucu işlevleri devre dışı kalacaktır.
+ *
+ * 📌 To enable server features, remove the comment (//) before the 'USE_SERVER' definition in
+ * ROLEBOT_Config.h. Otherwise, web server functions will be disabled.
+ */
+
 #include <ROLEBOT.h> // 📌 ROLEBOT Kütüphanesi / ROLEBOT Library
 
 ROLEBOT rolebot; // 📌 ROLEBOT Nesnesi / ROLEBOT Object
