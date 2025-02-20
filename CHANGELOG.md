@@ -1,5 +1,5 @@
 # Changelog
-## [1.5.6] - 2025-02-21
+## [1.5.7] - 2025-02-21
 ### Added
 - Config dosyası eklendi. 
 
