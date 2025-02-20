@@ -5,12 +5,26 @@
 
 #include <Arduino.h>
 #include <EEPROM.h>
-#include <ESP8266WiFi.h>
+
+#if defined(USE_SERVER)
+#ifndef USE_WIFI
+#define USE_WIFI
+#endif
 #include <ESPAsyncWebServer.h>
 #include <DNSServer.h>
+#endif
+
+#if defined(USE_FIREBASE)
+#ifndef USE_WIFI
+#define USE_WIFI
+#endif
 #include <Firebase_ESP_Client.h>
 #include <ArduinoJson.h>
+#endif
 
+#if defined(USE_WIFI)
+#include <ESP8266WiFi.h>
+#endif
 // PinS
 #define RELAY_1 12
 #define RELAY_2 13
@@ -53,20 +67,25 @@ public:
 
   /*********************************** WiFi  ***********************************
    */
+#if defined(USE_WIFI)
   void wifiStartAndConnect(const char *ssid, const char *pass);
   bool wifiConnectionControl();
   String wifiGetMACAddress();
   String wifiGetIPAddress();
+#endif
 
   /*********************************** Server  ***********************************
    */
+#if defined(USE_SERVER)
   void serverStart(const char *mode, const char *ssid, const char *password);
-  void serverCreateLocalPage(const char *url, const char *WEBPageScript, const char *WEBPageCSS, const char *WEBPageHTML, size_t bufferSize = 1024);
+  void serverCreateLocalPage(const char *url, const char *WEBPageScript, const char *WEBPageCSS, const char *WEBPageHTML, size_t bufferSize = 4096);
   void serverHandleDNS();
   void serverContinue();
+#endif
 
   /*********************************** Firebase Server  ***********************************
    */
+#if defined(USE_FIREBASE)
   // 📡 Firebase Server Functions
   void fbServerSetandStartWithUser(const char *projectURL, const char *secretKey, const char *userMail, const char *mailPass); // projectURL: YOUR_FIREBASE_PROJECT_ID.firebaseio.com / secretKey: YOUR_FIREBASE_DATABASE_SECRET
 
@@ -85,18 +104,22 @@ public:
   double fbServerGetDouble(const char *dataPath);
   bool fbServerGetBool(const char *dataPath);
   String fbServerGetJSON(const char *dataPath);
+#endif
 
 private:
-  const IPAddress apIP = IPAddress(192, 168, 4, 1);                                // Sabit IP adresi tanımlanıyor / Define static IP address
-  DNSServer dnsServer;                                                             // DNS sunucusu tanımlanıyor / Define DNS Server
-  AsyncWebServer serverCODROB = AsyncWebServer(80);                                // Async Web Server nesnesi oluşturuluyor / Create an Async Web Server object
-  AsyncWebSocket serverCODROBWebSocket = AsyncWebSocket("/serverCODROBWebSocket"); // WebSocket nesnesi tanımlanıyor / Define WebSocket object
+#if defined(USE_SERVER)
+  const IPAddress apIP = IPAddress(192, 168, 4, 1); // Sabit IP adresi tanımlanıyor / Define static IP address
+  DNSServer dnsServer;                              // DNS sunucusu tanımlanıyor / Define DNS Server
+  AsyncWebServer serverCODROB{80};                  // Web server objesi
+  AsyncWebSocket *serverCODROBWebSocket;            // Pointer olarak tanımla
+#endif
 
+#if defined(USE_FIREBASE)
   FirebaseData firebaseData;     // Data object to handle Firebase communication
   FirebaseAuth firebaseAuth;     // Authentication credentials for user verification
   FirebaseConfig firebaseConfig; // Configuration settings for Firebase
   char uid[128] = "";            // User ID storage
-};
+#endif };
 
 #else
 #error "ROLEBOT sadece ESP8266 için desteklenmektedir."

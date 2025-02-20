@@ -2,6 +2,9 @@
 
 ROLEBOT::ROLEBOT()
 {
+#if defined(USE_SERVER)
+  serverCODROBWebSocket = new AsyncWebSocket("/serverCODROBWebSocket");
+#endif
 }
 
 void ROLEBOT::begin()
@@ -118,6 +121,8 @@ int ROLEBOT::eepromReadInt(int address) // EEPROM'dan int türünde veri okumak 
 }
 
 /*********************************** WiFi ***********************************/
+#if defined(USE_WIFI)
+
 void ROLEBOT::wifiStartAndConnect(const char *ssid, const char *pass)
 {
   Serial.printf("[WiFi]: Connection Starting!\r\n[WiFi]: SSID: %s\r\n[WiFi]: Pass: %s\r\n", ssid, pass);
@@ -162,8 +167,11 @@ String ROLEBOT::wifiGetIPAddress()
 {
   return WiFi.localIP().toString();
 }
+#endif
 
 /*********************************** Server ***********************************/
+#if defined(USE_SERVER)
+
 void ROLEBOT::serverStart(const char *mode, const char *ssid, const char *password)
 {
   if (strcmp(mode, "STA") == 0)
@@ -276,6 +284,7 @@ void ROLEBOT::serverContinue()
 }
 
 /*********************************** Firebase Server Functions ***********************************/
+#if defined(USE_FIREBASE)
 
 // Initialize Firebase connection with SignUp Authentication
 void ROLEBOT::fbServerSetandStartWithUser(const char *projectURL, const char *secretKey, const char *userMail, const char *mailPass)
@@ -487,3 +496,4 @@ String ROLEBOT::fbServerGetJSON(const char *dataPath)
   Serial.println("[ERROR]: Failed to retrieve JSON data.");
   return "{}";
 }
+#endif
