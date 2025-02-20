@@ -25,12 +25,12 @@
   },
   "export": {
     "include": [
-      "src/*",
-      "include/*",
       "examples/*",
-      "test/*",
+      "ROLEBOT.h",
+      "ROLEBOT.cpp",
       "README.md",
       "keywords.txt",
+      "library.properties",
       "LICENSE",
       "CHANGELOG.md"
     ]
