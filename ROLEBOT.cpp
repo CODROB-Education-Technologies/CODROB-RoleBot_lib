@@ -282,6 +282,7 @@ void ROLEBOT::serverContinue()
     serverHandleDNS();
   }
 }
+#endif
 
 /*********************************** Firebase Server Functions ***********************************/
 #if defined(USE_FIREBASE)
@@ -428,7 +429,6 @@ void ROLEBOT::fbServerSetJSON(const char *dataPath, String data)
     Serial.println("Reason: " + firebaseData.errorReason());
   }
 }
-#endif
 
 /*********************************** Firebase Read Functions ***********************************/
 
