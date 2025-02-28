@@ -1,4 +1,9 @@
 # Changelog
+
+## [1.6.4] - 2025-02-28
+### Added
+- Tüm modüller için config dosyası kaldırıldı. Ortak kütüpahaneler devrede. 
+
 ## [1.6.3] - 2025-02-21
 ### Added
 - Config dosyası eklendi. 

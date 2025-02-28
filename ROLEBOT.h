@@ -1,8 +1,9 @@
 #ifndef ROLEBOT_H
 #define ROLEBOT_H
+#include <Arduino.h>
+#include <ROLEBOT_Config.h>
 
 #if defined(ESP8266)
-#include <Arduino.h>
 #include <EEPROM.h>
 #include <ROLEBOT_Config.h>
 

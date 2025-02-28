@@ -1,3 +1,4 @@
+#include <ROLEBOT_Config.h>
 #include "ROLEBOT.h"
 
 ROLEBOT::ROLEBOT()

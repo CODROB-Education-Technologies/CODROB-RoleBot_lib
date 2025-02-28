@@ -23,12 +23,8 @@
 // Enable/disable modules
 // Etkinleştirmek için yorumu kaldırın / Uncomment to activate
 
-// #define USE_SERVO       // Servo motor desteğini etkinleştir / Enable Servo motor support
-// #define USE_DHT         // DHT sıcaklık/nem sensörünü etkinleştir / Enable DHT temperature/humidity sensor
-// #define USE_NEOPIXEL    // NeoPixel LED desteğini etkinleştir / Enable NeoPixel LED support
-// #define USE_RFID        // RFID modülünü etkinleştir / Enable RFID module support
-// #define USE_SERVER // Web Sunucusu desteğini etkinleştir / Enable Web Server support
-// #define USE_FIREBASE     // Firebase desteğini etkinleştir / Enable Firebase support
-// #define USE_WIFI        // WiFi desteğini etkinleştir / Enable WiFi support
+ #define USE_SERVER // Web Sunucusu desteğini etkinleştir / Enable Web Server support
+ #define USE_FIREBASE     // Firebase desteğini etkinleştir / Enable Firebase support
+ #define USE_WIFI        // WiFi desteğini etkinleştir / Enable WiFi support
 
 #endif // ROLEBOT_Config_H
